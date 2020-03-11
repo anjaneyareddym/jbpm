@@ -1,0 +1,33 @@
+package com.myspace.taskexample;
+
+
+dialect "mvel"
+
+rule "general"
+ruleflow-group "product-rule"
+
+when 
+$product:Product(productPrice>1000)
+then
+System.out.println("General Product");
+$product.setProductCategory("General");
+end
+
+rule "standard"
+ruleflow-group "product-rule"
+when 
+$product:Product(productPrice>1000 && productPrice<10000)
+then
+System.out.println("Standard  Product");
+$product.setProductCategory("standard");
+end
+
+rule "prime"
+ruleflow-group "product-rule"
+
+when 
+$product:Product( productPrice > 10000)
+then
+System.out.println("Standard  Product");
+$product.setProductCategory("prime");
+end
